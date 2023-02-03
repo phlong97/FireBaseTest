@@ -19,7 +19,7 @@ namespace FireBaseTest
                 Name = txtName.Text,
                 Time = DateTime.Now,
                 Id = DateTime.Now.ToShortTimeString(),
-                Key = FirebaseKeyGenerator.Next()
+                //Key = DateTime.Now.ToShortTimeString() + txtName.Text,
             });
             dgFireBase.DataSource = await
                  client.GetDataFromFireBase<TestClass>(child);

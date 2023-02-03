@@ -28,7 +28,7 @@ namespace FireBaseTest
         public async Task<List<T>> GetDataFromFireBase<T>(string child)
         {
             var data = await
-                 Client.Child(child).OnceAsListAsync<T>();
+                 Client.Child(child).OnceAsync<T>();
 
             return data.Select(x => x.Object).ToList();
         }
@@ -36,7 +36,7 @@ namespace FireBaseTest
     }
     internal class TestClass
     {
-        public string Key { get; set; }
+        //public string Key { get; set; }
         public string Id { get; set; }
         public string Name { get; set; }
         public DateTime Time { get; set; }
