@@ -4,7 +4,8 @@ namespace FireBaseTest
 {
     public partial class Form1 : Form
     {
-        public static string URL = "", Secret = "", child = "";
+        public static string URL = "https://test-7bcdc-default-rtdb.asia-southeast1.firebasedatabase.app/",
+            Secret = "nskA8DU277kqufzBZAtRWSYXn4kNMJ2Lq4A7Codx", child = "Data";
         public Form1()
         {
             InitializeComponent();
@@ -17,8 +18,7 @@ namespace FireBaseTest
             {
                 Name = txtName.Text,
                 Time = DateTime.Now,
-                Id =
-                DateTime.Now.ToShortTimeString(),
+                Id = DateTime.Now.ToShortTimeString(),
                 Key = FirebaseKeyGenerator.Next()
             });
             dgFireBase.DataSource = await
