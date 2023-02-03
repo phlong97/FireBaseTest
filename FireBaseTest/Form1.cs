@@ -14,19 +14,22 @@ namespace FireBaseTest
         private async void btnSendData_Click(object sender, EventArgs e)
         {
             var client = new FireBaseDB(URL, Secret);
-            for (int i = 0; i < 1000; i++)
-            {
-                await client.SaveToFireBase(child, new TestClass
-                {
-                    Name = txtName.Text,
-                    Time = DateTime.Now,
-                    Id = DateTime.Now.ToShortTimeString(),
-                    //Key = DateTime.Now.ToShortTimeString() + txtName.Text,
-                });
-            }
+            List<TestClass> testClasses = new List<TestClass>();
 
-            //dgFireBase.DataSource = await
-            //     client.GetDataFromFireBase<TestClass>(child);
+            for (int i = 0; i < 50; i++)
+            {
+                testClasses.Add(
+                    new TestClass
+                    {
+                        Name = txtName.Text,
+                        Time = DateTime.Now,
+                        Id = DateTime.Now.ToShortTimeString(),
+                    });
+            }
+            Parallel.ForEach(testClasses, async item =>
+            {
+                await client.SaveToFireBase(child, item);
+            });
         }
 
         private async void btnGetData_Click(object sender, EventArgs e)
